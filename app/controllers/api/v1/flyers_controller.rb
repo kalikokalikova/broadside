@@ -10,6 +10,7 @@ class Api::V1::FlyersController < ApplicationController
 
   # GET /flyers/1
   def show
+    @flyer = Flyer.find(params[:id])
     render json: @flyer
   end
 
@@ -26,6 +27,8 @@ class Api::V1::FlyersController < ApplicationController
 
   # PATCH/PUT /flyers/1
   def update
+    @flyer = Flyer.find(params[:id])
+
     if @flyer.update(flyer_params)
       render json: @flyer
     else
@@ -35,7 +38,13 @@ class Api::V1::FlyersController < ApplicationController
 
   # DELETE /flyers/1
   def destroy
-    @flyer.destroy
+    @flyer = Flyer.find(params[:id])
+
+    if @flyer.destroy
+      head :no_content
+    else
+      render json: @flyer.errors, status: :unprocessable_entity
+    end
   end
 
   private
