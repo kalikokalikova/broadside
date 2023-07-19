@@ -6,7 +6,7 @@ import Flyers from "../components/Flyers";
 const API_URL = "http://localhost:3000/api/v1/flyers";
 
 function getApiData() {
-  return axios.get(API_URL).then((response) => response.data);
+  return axios.get(API_URL).then((response) => response.data.data);
 }
 
 export default function Wall() {

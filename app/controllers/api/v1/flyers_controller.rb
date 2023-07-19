@@ -4,22 +4,21 @@ class Api::V1::FlyersController < ApplicationController
   # GET /flyers
   def index
     @flyers = Flyer.all
-
-    render json: @flyers
+    render json: serializer(@flyers)
   end
 
   # GET /flyers/1
   def show
-    @flyer = Flyer.find(params[:id])
-    render json: @flyer
+    render json: serializer(@flyer)
   end
 
   # POST /flyers
   def create
+    puts flyer_params
     @flyer = Flyer.new(flyer_params)
 
     if @flyer.save
-      render json: @flyer, status: :created, location: @flyer
+      render json: serializer(@flyer), status: :created
     else
       render json: @flyer.errors, status: :unprocessable_entity
     end
@@ -27,10 +26,8 @@ class Api::V1::FlyersController < ApplicationController
 
   # PATCH/PUT /flyers/1
   def update
-    @flyer = Flyer.find(params[:id])
-
     if @flyer.update(flyer_params)
-      render json: @flyer
+      render json: serializer(@flyer)
     else
       render json: @flyer.errors, status: :unprocessable_entity
     end
@@ -38,8 +35,6 @@ class Api::V1::FlyersController < ApplicationController
 
   # DELETE /flyers/1
   def destroy
-    @flyer = Flyer.find(params[:id])
-
     if @flyer.destroy
       head :no_content
     else
@@ -50,11 +45,19 @@ class Api::V1::FlyersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_flyer
-      @flyer = Flyer.find(params[:id])
+      @flyer = Flyer.includes(:comments).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def flyer_params
-      params.require(:flyer).permit(:title, :description)
+      params.require(:flyer).permit(:id, :title, :description)
+    end
+
+    def options
+      @options ||= { include: %i[comments] }
+    end
+
+    def serializer(records, options= {})
+      FlyerSerializer.new(records, options).serializable_hash.to_json
     end
 end

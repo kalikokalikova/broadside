@@ -7,8 +7,10 @@ function Flyers(props) {
         return (
           <>
             <div key={flyer.id}></div>
-            <h2>{flyer.title}</h2>
-            <p>{flyer.description}</p>
+            <h2>
+              {flyer.id} {flyer.attributes.title}
+            </h2>
+            <p>{flyer.attributes.description}</p>
           </>
         );
       })}

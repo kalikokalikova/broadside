@@ -3,23 +3,23 @@ class Api::V1::FlyersController < ApplicationController
 
     # POST /comments
     def create
-      @comment = Comment.new(comment_params)
+      comment = Comment.new(comment_params)
   
-      if @comment.save
-        render json: @comment, status: :created, location: @comment
+      if comment.save
+        render json: comment, status: :created
       else
-        render json: @comment.errors, status: :unprocessable_entity
+        render json: comment.errors, status: :unprocessable_entity
       end
     end
 
     # DELETE /comments/1
     def destroy
-      @comment = Comment.find(params[:id])
+      comment = Comment.find(params[:id])
 
-      if @comment.destroy
+      if comment.destroy
         head :no_content
       else
-        render json: @comment.errors, status: :unprocessable_entity
+        render json: comment.errors, status: :unprocessable_entity
       end
     end
 
@@ -27,10 +27,7 @@ class Api::V1::FlyersController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, flyer_id)
+    params.require(:comment).permit(:body, :flyer_id)
   end
-
-
-
 
 end
