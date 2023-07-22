@@ -7,7 +7,7 @@ ruby "3.0.0"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 gem 'rack-cors'
-gem 'jsonapi-serializer'
+# gem 'jsonapi-serializer'
 
 
 # Use sqlite3 as the database for Active Record

@@ -4,12 +4,12 @@ class Api::V1::FlyersController < ApplicationController
   # GET /flyers
   def index
     @flyers = Flyer.all
-    render json: serializer(@flyers)
+    render json: @flyers
   end
 
   # GET /flyers/1
   def show
-    render json: serializer(@flyer)
+    render json: @flyer
   end
 
   # POST /flyers
@@ -18,7 +18,7 @@ class Api::V1::FlyersController < ApplicationController
     @flyer = Flyer.new(flyer_params)
 
     if @flyer.save
-      render json: serializer(@flyer), status: :created
+      render json: (@flyer), status: :created
     else
       render json: @flyer.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::V1::FlyersController < ApplicationController
   # PATCH/PUT /flyers/1
   def update
     if @flyer.update(flyer_params)
-      render json: serializer(@flyer)
+      render json: (@flyer)
     else
       render json: @flyer.errors, status: :unprocessable_entity
     end
@@ -43,9 +43,10 @@ class Api::V1::FlyersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_flyer
-      @flyer = Flyer.includes(:comments).find(params[:id])
+      @flyer = Flyer.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -53,11 +54,4 @@ class Api::V1::FlyersController < ApplicationController
       params.require(:flyer).permit(:id, :title, :description)
     end
 
-    def options
-      @options ||= { include: %i[comments] }
-    end
-
-    def serializer(records, options= {})
-      FlyerSerializer.new(records, options).serializable_hash.to_json
-    end
 end

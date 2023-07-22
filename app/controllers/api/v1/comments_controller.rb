@@ -1,5 +1,4 @@
-class Api::V1::FlyersController < ApplicationController
-  before_action :set_flyer, only: %i[ show update destroy ]
+class Api::V1::CommentsController < ApplicationController
 
     # POST /comments
     def create
