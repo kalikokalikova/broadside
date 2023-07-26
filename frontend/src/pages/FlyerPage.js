@@ -14,7 +14,6 @@ export default function FlyerPage() {
     axios
       .get(API_URL + id)
       .then((resp) => {
-        console.log(resp);
         setFlyer(resp.data);
       })
       .catch((resp) => console.log(resp));

@@ -6,15 +6,14 @@ function Flyers(props) {
     <div>
       {props.flyers.map((flyer) => {
         return (
-          <>
-            <div key={flyer.id}></div>
+          <div key={flyer.id}>
             <Link to={`/flyers/${flyer.id}`}>
               <h2>
                 {flyer.id} {flyer.title}
               </h2>
             </Link>
             <p>{flyer.description}</p>
-          </>
+          </div>
         );
       })}
     </div>
