@@ -4,7 +4,8 @@ import Wall from "./pages/Wall";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Account from "./pages/Account";
-import Flyer from "./pages/FlyerPage";
+import FlyerFormPage from "./pages/FlyerFormPage";
+import FlyerPage from "./pages/FlyerPage";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <Route path="/" element={<Welcome />} />
             <Route path="/wall" element={<Wall />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/flyers/:id" element={<Flyer />} />
+            <Route path="/flyers/:id" element={<FlyerPage />} />
+            <Route path="/flyer-form" element={<FlyerFormPage />} />
           </Routes>
         </div>
       </div>
