@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Flyers(props) {
   return (
@@ -7,10 +8,12 @@ function Flyers(props) {
         return (
           <>
             <div key={flyer.id}></div>
-            <h2>
-              {flyer.id} {flyer.attributes.title}
-            </h2>
-            <p>{flyer.attributes.description}</p>
+            <Link to={`/flyers/${flyer.id}`}>
+              <h2>
+                {flyer.id} {flyer.title}
+              </h2>
+            </Link>
+            <p>{flyer.description}</p>
           </>
         );
       })}

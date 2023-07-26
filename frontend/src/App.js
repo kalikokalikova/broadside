@@ -4,6 +4,7 @@ import Wall from "./pages/Wall";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Account from "./pages/Account";
+import Flyer from "./pages/FlyerPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Welcome />} />
             <Route path="/wall" element={<Wall />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/flyers/:id" element={<Flyer />} />
           </Routes>
         </div>
       </div>
