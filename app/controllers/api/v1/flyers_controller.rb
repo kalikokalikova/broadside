@@ -35,7 +35,7 @@ class Api::V1::FlyersController < ApplicationController
   # DELETE /flyers/1
   def destroy
     if @flyer.destroy
-      head :no_content
+      head :no_content #204
     else
       render json: @flyer.errors, status: :unprocessable_entity
     end
