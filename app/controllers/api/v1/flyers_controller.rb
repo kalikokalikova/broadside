@@ -14,7 +14,6 @@ class Api::V1::FlyersController < ApplicationController
 
   # POST /flyers
   def create
-    puts flyer_params
     @flyer = Flyer.new(flyer_params)
 
     if @flyer.save
@@ -51,7 +50,7 @@ class Api::V1::FlyersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flyer_params
-      params.require(:flyer).permit(:id, :title, :description)
+      params.require(:flyer).permit(:id, :title, :description, :user_id)
     end
 
 end
