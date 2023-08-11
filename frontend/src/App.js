@@ -21,13 +21,14 @@ function App() {
   // if yes: handleLogin(response) setState isLoggedIn: true, user: user.data
   // else handleLogout() setState isLoggedIn: false, user: {}
   const API_URL = "http://localhost:3000/api/v1/";
+  let token = localStorage.getItem("authorization");
 
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     axios
-      .get(API_URL + "current_user") // add JWT to header
+      .get(API_URL + "current_user", { headers: { Authorization: token } }) // add JWT to header
       .then((resp) => {
         console.log(resp); // handleLogin(response) setState isLoggedIn: true, user: user.data
       })

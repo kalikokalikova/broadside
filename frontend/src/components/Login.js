@@ -28,8 +28,8 @@ function Login() {
     axios
       .post(API_URL + "login", { user: userForm })
       .then((resp) => {
-        console.log("Yay!");
-        // save jwt in local storage (for now)
+        // save jwt in cookie (for now)
+        localStorage.setItem("authorization", resp.headers.authorization);
         navigate("/wall");
       })
       .catch((resp) => {
