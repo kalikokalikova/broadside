@@ -1,27 +1,4 @@
 # README
 
-npm i axios
-npm i react-router-dom
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+[Testing a Rails API with RSpec](https://blog.devgenius.io/testing-a-rails-api-with-rspec-82dedc9f15df)
+[User Authentication in React via Rails API](https://medium.com/swlh/react-reactions-cfdde7f08dff)

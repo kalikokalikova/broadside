@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   root 'flyers#index'
-
-  get '/current_user', to: 'current_user#index'
   
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :flyers
       resources :comments
+      get '/current_user', to: 'current_user#index'
     end
   end
 
