@@ -2,9 +2,14 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+require 'capybara/rspec'
+require 'rspec/rails'
+
+Capybara.default_driver = :selenium_headless
+Capybara.app_host = 'http://localhost:3001'  # Set to your app's URL
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -33,6 +38,7 @@ end
 RSpec.configure do |config|
 
   config.include ApiHelpers
+  config.include Rails.application.routes.url_helpers
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
