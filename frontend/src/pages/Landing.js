@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Login from "../components/Login";
 
-export default function Landing(props) {
-  console.log(props);
+export default function Landing() {
   return (
     <>
       <div>Welcome to Broadside</div>

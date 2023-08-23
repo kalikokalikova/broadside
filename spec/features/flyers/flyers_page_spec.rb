@@ -22,6 +22,7 @@ end
 #       # go to the wall
 #       visit('/wall')
 #       # user should see only public flyers
+        # user should see sign up/sign in
 #       puts page
 #     end
 #   end
@@ -30,6 +31,7 @@ end
 #     # create 5 public flyers, 1 private flyer owned by user, 1 private flyer owned by other
 #     # go to wall
 #     # user should see all public flyers, their own flyer, but NOT the private flyer owned by other
+      # user should see Welcome username, log out
 #   end
 
 # end

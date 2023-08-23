@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../contexts/userContext";
 
 const API_URL = "http://localhost:3000/";
 
 function Login() {
+  const [user, setUser] = useContext(UserContext);
   const [userForm, setUserForm] = useState({
     email: "",
     password: "",
@@ -28,8 +31,10 @@ function Login() {
     axios
       .post(API_URL + "login", { user: userForm })
       .then((resp) => {
-        // save jwt in cookie (for now)
+        // save jwt in localstorage (for now)
+        console.log("log in response: ", resp);
         localStorage.setItem("authorization", resp.headers.authorization);
+        setUser(resp.data.data);
         navigate("/wall");
       })
       .catch((resp) => {

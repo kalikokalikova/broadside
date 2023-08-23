@@ -6,38 +6,10 @@ import Landing from "./pages/Landing";
 import Account from "./pages/Account";
 import FlyerFormPage from "./pages/FlyerFormPage";
 import FlyerPage from "./pages/FlyerPage";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { UserProvider } from "./contexts/userContext";
 
-function App() {
-  // make axios call to find out if user is logged in
-  // put in useEffect
-  // {
-  //   "id": 1,
-  //   "email": "test@email.com",
-  //   "name": "Testy McTesterson",
-  //   "created_at": "2023-07-27T23:56:18.751Z"
-  // }
-  // if yes: handleLogin(response) setState isLoggedIn: true, user: user.data
-  // else handleLogout() setState isLoggedIn: false, user: {}
-  const API_URL = "http://localhost:3000/api/v1/";
-  let token = localStorage.getItem("authorization");
-
-  const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(API_URL + "current_user", { headers: { Authorization: token } }) // add JWT to header
-      .then((resp) => {
-        console.log(resp); // handleLogin(response) setState isLoggedIn: true, user: user.data
-      })
-      .catch((resp) => {
-        console.log("error: " + resp);
-      });
-  }, []);
-
-  return (
+const App = () => (
+  <UserProvider>
     <Router>
       <div className="App">
         <Navbar />
@@ -52,7 +24,7 @@ function App() {
         </div>
       </div>
     </Router>
-  );
-}
+  </UserProvider>
+);
 
 export default App;
